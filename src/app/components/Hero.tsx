@@ -1,15 +1,36 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from './Button';
+"use client";
 
-const HeroSection = styled.section`
+import React from "react";
+import styled from "styled-components";
+import Button from "./Button";
+import Puzzle from "./Puzzel";
+
+const HeroWrapper = styled.section`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   min-height: 100vh;
-  padding: 0 1.5rem;
-  background-color: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
+  padding: 0 2rem;
+  gap: 2rem;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    padding-top: 5rem;
+  }
+`;
+
+const TextContent = styled.div`
+  flex: 1;
+`;
+
+const PuzzleWrapper = styled.div`
+  flex: 1;
+  max-width: 500px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const Intro = styled.p`
@@ -52,17 +73,23 @@ const Description = styled.p`
 
 const Hero = () => {
   return (
-    <HeroSection>
-      <Intro>Olá, meu nome é</Intro>
-      <Name>Adriano Abner.</Name>
-      <Statement>Transformo erros em soluções reais.</Statement>
-      <Description>
-        Sou desenvolvedor Front-end apaixonado por criar experiências digitais que funcionam. Atualmente, estou focado em aprimorar projetos reais com foco em acessibilidade, performance e propósito.
-      </Description>
-      <Button label="Veja meus primeiros projetos na prática" onClick={() => {
-        document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
-      }} />
-    </HeroSection>
+    <HeroWrapper>
+      <TextContent>
+        <Intro>Olá, meu nome é</Intro>
+        <Name>Adriano Abner.</Name>
+        <Statement>Transformo erros em soluções reais.</Statement>
+        <Description>
+          Sou desenvolvedor Front-end apaixonado por criar experiências digitais
+          que funcionam. Atualmente, estou focado em aprimorar projetos reais
+          com foco em acessibilidade, performance e propósito.
+        </Description>
+        <Button label="Entre em contato" href="https://wa.me/5511962214102" />
+      </TextContent>
+
+      <PuzzleWrapper>
+        <Puzzle />
+      </PuzzleWrapper>
+    </HeroWrapper>
   );
 };
 

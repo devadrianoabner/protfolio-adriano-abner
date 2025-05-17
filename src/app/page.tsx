@@ -2,7 +2,6 @@
 
 import BaseLayout from "./components/BaseLayout";
 import Hero from "./components/Hero";
-import About from "./components/About";
 import GlobalStyles from "./styles/globalStyles";
 
 export default function Home() {
@@ -10,7 +9,6 @@ export default function Home() {
     <BaseLayout>
       <GlobalStyles />
       <Hero />
-      <About />
     </BaseLayout>
   );
 }

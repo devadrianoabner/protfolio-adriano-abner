@@ -6,9 +6,10 @@ export type ButtonProps = {
   onClick?: () => void;
   variant?: "primary" | "outlined";
   fullWidth?: boolean;
+  href?: string;
 };
 
-const StyledButton = styled.button<{
+const baseStyles = css<{
   $variant: "primary" | "outlined";
   $fullWidth?: boolean;
 }>`
@@ -18,10 +19,11 @@ const StyledButton = styled.button<{
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
-
   width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "fit-content")};
   display: inline-block;
   margin-top: 2rem;
+  text-align: center;
+  text-decoration: none;
 
   ${({ $variant, theme }) =>
     $variant === "primary"
@@ -47,12 +49,35 @@ const StyledButton = styled.button<{
         `}
 `;
 
+const StyledButton = styled.button<{ $variant: "primary" | "outlined"; $fullWidth?: boolean }>`
+  ${baseStyles}
+`;
+
+const StyledLink = styled.a<{ $variant: "primary" | "outlined"; $fullWidth?: boolean }>`
+  ${baseStyles}
+`;
+
 const Button: React.FC<ButtonProps> = ({
   label,
   onClick,
   variant = "primary",
   fullWidth = false,
+  href,
 }) => {
+  if (href) {
+    return (
+      <StyledLink
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        $variant={variant}
+        $fullWidth={fullWidth}
+      >
+        {label}
+      </StyledLink>
+    );
+  }
+
   return (
     <StyledButton onClick={onClick} $variant={variant} $fullWidth={fullWidth}>
       {label}
