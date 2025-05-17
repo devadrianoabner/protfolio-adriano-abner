@@ -1,15 +1,15 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
 
 export type ButtonProps = {
   label: string;
   onClick?: () => void;
-  variant?: 'primary' | 'outlined';
+  variant?: "primary" | "outlined";
   fullWidth?: boolean;
 };
 
 const StyledButton = styled.button<{
-  $variant: 'primary' | 'outlined';
+  $variant: "primary" | "outlined";
   $fullWidth?: boolean;
 }>`
   font-size: 16px;
@@ -18,10 +18,13 @@ const StyledButton = styled.button<{
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
-  ${({ $fullWidth }) => $fullWidth && 'width: 100%;'}
+
+  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "fit-content")};
+  display: inline-block;
+  margin-top: 2rem;
 
   ${({ $variant, theme }) =>
-    $variant === 'primary'
+    $variant === "primary"
       ? css`
           background-color: ${theme.colors.primary};
           color: ${theme.colors.background};
@@ -44,7 +47,12 @@ const StyledButton = styled.button<{
         `}
 `;
 
-const Button: React.FC<ButtonProps> = ({ label, onClick, variant = 'primary', fullWidth = false }) => {
+const Button: React.FC<ButtonProps> = ({
+  label,
+  onClick,
+  variant = "primary",
+  fullWidth = false,
+}) => {
   return (
     <StyledButton onClick={onClick} $variant={variant} $fullWidth={fullWidth}>
       {label}

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from './Button';
 
 const HeroSection = styled.section`
   display: flex;
@@ -49,23 +50,6 @@ const Description = styled.p`
   color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
-const CTAButton = styled.a`
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  border-radius: 4px;
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.primary};
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.background};
-  }
-`;
-
 const Hero = () => {
   return (
     <HeroSection>
@@ -75,7 +59,9 @@ const Hero = () => {
       <Description>
         Sou desenvolvedor Front-end apaixonado por criar experiências digitais que funcionam. Atualmente, estou focado em aprimorar projetos reais com foco em acessibilidade, performance e propósito.
       </Description>
-      <CTAButton href="#projects">Veja meus primeiros projetos na prática</CTAButton>
+      <Button label="Veja meus primeiros projetos na prática" onClick={() => {
+        document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+      }} />
     </HeroSection>
   );
 };

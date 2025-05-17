@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html, body {
-    background-color: ${({ theme }) => theme.colors.background};
+      background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
    font-family: var(--font-inter), sans-serif;
     font-size: ${({ theme }) => theme.fontSizes.normal};

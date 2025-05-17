@@ -3,7 +3,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
-import StyledComponentsRegistry from "../lib/registry";
 import GlobalStyles from "./styles/globalStyles";
 import { Inter } from "next/font/google";
 
@@ -21,12 +20,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable}>
       <body>
-        <StyledComponentsRegistry>
-          <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            {children}
-          </ThemeProvider>
-        </StyledComponentsRegistry>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
